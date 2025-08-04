@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 // STEP 1. create component
 // STEP 2. Define initial state
 //  2a. Create state variable `books` to store array of book objects
@@ -12,11 +10,17 @@ import { useState } from 'react';
 //  3b. Begin function by stopping the default form submission
 //  3b. use `setBooks` setter function to update `books` array state.
 //  3b. reset the `newBook` state to its initial empty values to clear the form fields
-//  STEP 4. Form Creation
+// STEP 4. Form Creation
 //  4a. use JSX to create a form within `Bookshelf` component.
 //  4b. Add input fields for both "Title" and "Author"
 //  4c. Ensure each input field is connected to the corresponding property in the `newBook` state object. 
 //  4d. Include a submit button in the form. 
+// STEP 5. Map through books
+//  5a. use the `map` function to iterate over the `books` array
+//  5b. create a "book card"
+//  5c. Ensure each book card is distinct and clearly displays title and author of book
+
+import { useState } from 'react';
 
 const Bookshelf = () => {                      // STEP 1. created component called `Bookshelf` with exports and imports
     const [books, setBooks] = useState([]);    // STEP 2a. state variable `books` holds empty array
@@ -50,7 +54,14 @@ const Bookshelf = () => {                      // STEP 1. created component call
                         <button type='submit'>Add Book</button>           {/* STEP 4d. submit button calls `handleSubmit` event handler */}
                     </form>
                 </div>
-                <div className="bookCardsDiv">{/* Book cards will display here */}</div>
+                <div className="bookCardsDiv">
+                    {books.map((book, index) => (                      // STEP 5a. `map` function to iterate over `books` array
+                        <div key={index} className="bookCard">         {/* STEP 5b. `<div>` wrap to create a "book card" */}
+                            <h4>{book.title}</h4>                      {/* STEP 5c. each card displays book title and author, `className`uses "bookCard" for styling */}
+                            <p>{book.author}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     );
