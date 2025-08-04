@@ -12,6 +12,11 @@ import { useState } from 'react';
 //  3b. Begin function by stopping the default form submission
 //  3b. use `setBooks` setter function to update `books` array state.
 //  3b. reset the `newBook` state to its initial empty values to clear the form fields
+//  STEP 4. Form Creation
+//  4a. use JSX to create a form within `Bookshelf` component.
+//  4b. Add input fields for both "Title" and "Author"
+//  4c. Ensure each input field is connected to the corresponding property in the `newBook` state object. 
+//  4d. Include a submit button in the form. 
 
 const Bookshelf = () => {                      // STEP 1. created component called `Bookshelf` with exports and imports
     const [books, setBooks] = useState([]);    // STEP 2a. state variable `books` holds empty array
@@ -28,7 +33,7 @@ const Bookshelf = () => {                      // STEP 1. created component call
     function handleSubmit(e) {                  // STEP 3b. function that will execute when the form is submitted
         e.preventDefault();                     // STEP 3b. prevents the page from refreshing
         setBooks([...books, newBook]);          // STEP 3b. `setBooks` setter function, updates the books array using the spread operator
-        setNewBook({ title: '', author: ''});   // STEP 3b. resets the `newBook` state back to empty strings 
+        setNewBook({ title: '', author: '' });   // STEP 3b. resets the `newBook` state back to empty strings 
     }
 
 
@@ -37,7 +42,13 @@ const Bookshelf = () => {                      // STEP 1. created component call
             <div className="bookshelfDiv">
                 <div className="formDiv">
                     <h3>Add a Book</h3>
-                    {/* Form will go here */}
+                    <form onSubmit={handleSubmit}>                    {/* STEP 4a.4d. form to post `newBook` with `handleSubmit` e handler*/}
+                        <label htmlFor='title'>Title:</label>         {/* STEP 4b. input field for "Title" */}
+                        <input type='text' id='title' name='title' value={newBook.title} onChange={handleInputChange} /> {/* STEP 4c. connected to property `title`, `value` displays current state, `onChange` updates state with `handleInputChange`  */}
+                        <label htmlFor='author'>Author:</label>           {/* STEP 4b. input field for "Author" */}
+                        <input type='text' id='author' name='author' value={newBook.author} onChange={handleInputChange} />   {/* STEP 4c */}
+                        <button type='submit'>Add Book</button>           {/* STEP 4d. submit button calls `handleSubmit` event handler */}
+                    </form>
                 </div>
                 <div className="bookCardsDiv">{/* Book cards will display here */}</div>
             </div>
