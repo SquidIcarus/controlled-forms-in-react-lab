@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const Bookshelf = () => {                      // STEP 1. created component called `Bookshelf` with exports and imports
     const [books, setBooks] = useState([]);    // STEP 2a. state variable `books` holds empty array
-    conast[newBook, setNewBook] = useState({   // STEP 2b. state variable for new book additions, an object with title and author keys set to empty strings
+    const [newBook, setNewBook] = useState({   // STEP 2b. state variable for new book additions, an object with title and author keys set to empty strings
         title: '',
         author: '',
     });
